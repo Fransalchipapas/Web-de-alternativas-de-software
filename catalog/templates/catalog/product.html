@@ -1,0 +1,39 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<article class="result">
+  <p class="eyebrow">Producto</p>
+  <h2>{{ product.name }}</h2>
+  {% if product.company %}<p class="meta">{{ product.company.name }}</p>{% endif %}
+  {% if product.license %}<p class="meta">{{ product.get_license_display }}</p>{% endif %}
+  {% if product.categories.all %}
+    <ul class="tags">
+      {% for category in product.categories.all %}
+        <li>{{ category.name }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% if product.description %}<p>{{ product.description }}</p>{% endif %}
+  {% if product.website %}
+    <p><a href="{{ product.website }}">Sitio oficial</a></p>
+  {% endif %}
+
+  {% if product.sources.all %}
+    <h3>Fuentes</h3>
+    <ul class="matches">
+      {% for source in product.sources.all %}
+        <li><a href="{{ source.url }}">{{ source.name }}</a></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <h3>Alternativas</h3>
+  {% for alt in alternatives %}
+    {% include "catalog/_alternativa.html" %}
+  {% empty %}
+    <p class="hint">Todavía no hay alternativas cargadas para {{ product.name }}.</p>
+  {% endfor %}
+</article>
+{% endblock %}

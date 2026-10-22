@@ -1,0 +1,27 @@
+{% extends "catalog/base.html" %}
+
+{% block title %}Buscar alternativas{% endblock %}
+
+{% block content %}
+<form class="search" method="get" action="{% url 'buscar' %}" role="search">
+  <label for="q">Programa</label>
+  <div class="search-row">
+    <input
+      id="q"
+      type="search"
+      name="q"
+      value="{{ query }}"
+      placeholder="Photoshop"
+      hx-get="{% url 'buscar' %}"
+      hx-trigger="keyup changed delay:300ms, search"
+      hx-target="#resultados"
+      hx-push-url="true"
+      autocomplete="off"
+    >
+    <button type="submit">Buscar</button>
+  </div>
+</form>
+<div id="resultados">
+  {% include "catalog/_resultados.html" %}
+</div>
+{% endblock %}

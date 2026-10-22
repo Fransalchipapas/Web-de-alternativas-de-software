@@ -1,0 +1,20 @@
+{% load static %}
+{% load django_htmx %}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Alternativas{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'catalog/styles.css' %}">
+  {% htmx_script %}
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="{% url 'home' %}">Alternativas</a>
+    <p>Buscá un programa y mirá con qué reemplazarlo.</p>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

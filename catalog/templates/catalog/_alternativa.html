@@ -1,0 +1,6 @@
+<article class="card">
+  <h3><a href="{% url 'producto' alt.product.slug %}">{{ alt.product.name }}</a></h3>
+  {% if alt.product.company %}<p class="meta">{{ alt.product.company.name }}</p>{% endif %}
+  {% if alt.product.license %}<p class="meta">{{ alt.product.get_license_display }}</p>{% endif %}
+  {% if alt.reason %}<p>{{ alt.reason }}</p>{% endif %}
+</article>

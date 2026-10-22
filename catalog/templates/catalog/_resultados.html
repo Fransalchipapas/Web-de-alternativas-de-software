@@ -1,0 +1,41 @@
+{% if not query %}
+  <p class="hint">Escribí el nombre de un programa, por ejemplo Photoshop o GIMP.</p>
+{% elif selected %}
+  <section class="result">
+    <p class="eyebrow">Programa</p>
+    <h2><a href="{% url 'producto' selected.slug %}">{{ selected.name }}</a></h2>
+    {% if selected.company %}<p class="meta">{{ selected.company.name }}</p>{% endif %}
+    {% if selected.description %}<p>{{ selected.description }}</p>{% endif %}
+
+    <h3>Alternativas</h3>
+    {% for alt in alternatives %}
+      {% include "catalog/_alternativa.html" %}
+    {% empty %}
+      <p class="hint">Todavía no hay alternativas cargadas para {{ selected.name }}.</p>
+    {% endfor %}
+  </section>
+
+  {% if products|length > 1 %}
+    <section class="result">
+      <h3>Otros parecidos</h3>
+      <ul class="matches">
+        {% for product in products %}
+          {% if product.pk != selected.pk %}
+            <li><a href="{% url 'producto' product.slug %}">{{ product.name }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+{% elif products %}
+  <section class="result">
+    <h2>Coincidencias</h2>
+    <ul class="matches">
+      {% for product in products %}
+        <li><a href="{% url 'producto' product.slug %}">{{ product.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% else %}
+  <p class="hint">No hay ningún producto que coincida con “{{ query }}”.</p>
+{% endif %}

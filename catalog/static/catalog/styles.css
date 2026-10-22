@@ -1,0 +1,130 @@
+:root {
+  color-scheme: light;
+  --ink: #1c1915;
+  --muted: #5c564c;
+  --line: #d9d1c3;
+  --paper: #f6f3ec;
+  --card: #fffdf8;
+  --accent: #0f5c57;
+  --accent-ink: #f6f3ec;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font: 18px/1.5 "Segoe UI", system-ui, sans-serif;
+}
+
+a { color: var(--accent); }
+
+.site-header,
+main {
+  width: min(720px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.site-header {
+  padding: 2.5rem 0 1rem;
+}
+
+.brand {
+  color: var(--ink);
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.03em;
+}
+
+.site-header p,
+.hint,
+.meta {
+  color: var(--muted);
+}
+
+.search label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.search-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.search input {
+  flex: 1;
+  border: 2px solid var(--ink);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.8rem 1.1rem;
+  font: inherit;
+}
+
+.search button {
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.8rem 1.2rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.result { margin-top: 1.75rem; }
+
+.result h2,
+.card h3 {
+  margin: 0.15rem 0;
+  letter-spacing: -0.03em;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.card {
+  margin: 0.75rem 0;
+  padding: 0.9rem 1rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+}
+
+.card p,
+.result > p { margin: 0.25rem 0; }
+
+.matches,
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.matches a,
+.tags li {
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  text-decoration: none;
+}
+
+.tags li { color: var(--muted); }
