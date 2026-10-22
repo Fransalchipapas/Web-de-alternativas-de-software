@@ -31,3 +31,25 @@ Variables:
 
 El contenedor corre las migraciones, junta los estáticos y levanta Gunicorn. El puerto lo toma de `PORT`.
 ANOTACIÓN= tener en cuenta que whitenoise.storage.CompressedStaticFilesStorage es una config para despligue en  render
+## git pull origin main --allow-unrelated-histories
+Nos sirvió para actualizar el LINCENSE 
+nos abrio vim con el enlace del repo, ahora nada más -> esc -> escribir :wq -> enter
+
+## dockerizado
+deberia poder construirse con 
+````text
+    docker build -t alternativas .  -> costruirlo
+    docker run -p 10000:10000 alternativas -> ejecutarlo
+````
+Antes de ir a render tirar en la carpeta del proyecto=
+uv run python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+
+# Render
+Escogemos el titulo de proyecto y el servicio gratuito, despues 
+Creamos la postgres db, ponemos el nombre el computo -> create database
+En info, copiamos el internal database URL para la var de entorno
+En new -> creamos un web service y seleccionamos el proyecto de github
+        |-New Web Service = language: Docker, root directory: null si ya se paró en Dockerfile y manage.py
+        |-Compute: 0
+        |-Enviroment Variables= toda la config del .env
+            
