@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Setup admin</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 28rem; margin: 3rem auto; padding: 0 1rem; }
+    label { display: block; margin-top: 0.75rem; font-weight: 600; }
+    input { width: 100%; padding: 0.5rem; margin-top: 0.25rem; box-sizing: border-box; }
+    button { margin-top: 1.25rem; padding: 0.6rem 1rem; font-weight: 700; cursor: pointer; }
+    .error { color: #b00020; margin-top: 0.5rem; }
+    .hint { color: #555; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <h1>Crear administrador</h1>
+
+  {% if done %}
+    <p>Ya existe un superusuario. Esta página quedó desactivada.</p>
+    <p><a href="/admin/">Ir al admin</a></p>
+  {% else %}
+    <p class="hint">Solo funciona la primera vez. Después no se pueden crear más admins desde aquí.</p>
+    <form method="post">
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        <div class="error">{{ form.non_field_errors }}</div>
+      {% endif %}
+      {% for field in form %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}<p class="hint">{{ field.help_text }}</p>{% endif %}
+        {% if field.errors %}<div class="error">{{ field.errors }}</div>{% endif %}
+      {% endfor %}
+      <button type="submit">Crear superusuario</button>
+    </form>
+  {% endif %}
+</body>
+</html>

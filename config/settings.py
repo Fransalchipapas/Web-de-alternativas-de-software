@@ -11,6 +11,7 @@ env = environ.Env(
 environ.Env.read_env(BASE_DIR / ".env")
 
 SECRET_KEY = env("SECRET_KEY", default="dev-only-not-secret")
+SETUP_SECRET = env("SETUP_SECRET", default="")
 DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env.list(
     "ALLOWED_HOSTS",
